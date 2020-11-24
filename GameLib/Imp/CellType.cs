@@ -10,5 +10,6 @@ namespace GameLib.Imp
         empty,
         checkShip,
         ship,
+        nearShip
     }
 }

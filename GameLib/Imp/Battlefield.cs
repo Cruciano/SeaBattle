@@ -1,36 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
 
 namespace GameLib.Imp
 {
     class Battlefield
     {
         private Cell[,] _battleField;
-        private int Size;
+        private int _size;
 
         public Battlefield(int size)
         {
             _battleField = new Cell[size, size];
-            Size = size;
+            _size = size;
+        }
+
+        public int Size
+        {
+            get
+            {
+                return _size;
+            }
         }
 
         public void SetCell(Cell cell)
         {
-            if (IsCellInField(cell))
+            if (IsPointInField(cell.coordinates))
             {
-                _battleField[cell.X, cell.Y] = cell;
+                _battleField[cell.coordinates.X, cell.coordinates.Y] = cell;
             }
         }
 
-        public Cell GetCell(int x, int y)
+        public Cell GetCell(Point point)
         {
-            return _battleField[x, y];
+            return _battleField[point.X, point.Y];
         }
 
-        private bool IsCellInField(Cell cell)
+        private bool IsPointInField(Point point)
         {
-            return (cell.X < Size) && (cell.Y < Size) && (cell.X >= 0) && (cell.Y >= 0);
+            return (point.X < _size) && (point.Y < _size) && (point.X >= 0) && (point.Y >= 0);
         }
     }
 }
