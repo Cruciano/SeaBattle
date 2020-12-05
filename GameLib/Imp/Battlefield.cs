@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using GameLib.Abs;
 
 namespace GameLib.Imp
 {
-    class Battlefield
+    class Battlefield : IBattlefield
     {
         private Cell[,] _battleField;
         private int _size;

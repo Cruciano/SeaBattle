@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using GameLib.Abs;
 
 namespace GameLib.Imp
 {
-    class Player
+    class Player : IPlayer
     {
-        public Battlefield Battlefield { get; set; }
-        public bool IsTurn;
+        public IBattlefield Battlefield { get; set; }
+        public bool IsTurn { get; set; }
     }
 }

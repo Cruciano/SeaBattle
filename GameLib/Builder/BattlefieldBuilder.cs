@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using GameLib.Imp;
+using GameLib.Abs;
 
 namespace GameLib.Builder
 {
-    class BattlefieldBuilder
+    class BattlefieldBuilder : IBattlefieldBuilder
     {
         private Battlefield _battlefield;
         private GamePreset _preset;
 
         public BattlefieldBuilder(GamePreset preset)
         {
+            Reset();
             _preset = preset;
+        }
+
+        public void Reset()
+        {
+            _battlefield = new Battlefield(0);
         }
 
         public void CreateBattlefield()
@@ -41,6 +48,13 @@ namespace GameLib.Builder
                     PlaceShipRandom(size);
                 }
             }
+        }
+
+        public IBattlefield GetResult()
+        {
+            Battlefield result = _battlefield;
+            Reset();
+            return result;
         }
 
         private void PlaceShipRandom(int shipSize)
@@ -141,7 +155,8 @@ namespace GameLib.Builder
 
                 surroundingCells.Add(new Cell { coordinates = new Point(start.X, start.Y - 1),
                                                          Type = CellType.nearShip });
-                surroundingCells.Add(new Cell { coordinates = new Point(start.X, start.Y + range + 1),
+                surroundingCells.Add(new Cell { coordinates = new Point(start.X, start.Y + range + 1
+                    ),
                                                          Type = CellType.nearShip });
             }
 
