@@ -11,16 +11,17 @@ namespace GameLib.Imp
     {
         private IPlayer _firstPlayer;
         private IPlayer _secondPlayer;
+        private GamePreset _gamePreset;
 
         public IBattlefield GetFirstField() => _firstPlayer.Battlefield;
         public IBattlefield GetSecondField() => _secondPlayer.Battlefield;
 
-        public Game(GamePreset preset)
+        public Game(IBattlefieldBuilder builder, GamePreset gamePreset)
         {
             _firstPlayer = new Player() { IsTurn = true };
             _secondPlayer = new Player() { IsTurn = false };
+            _gamePreset = gamePreset;
 
-            IBattlefieldBuilder builder = new BattlefieldBuilder(preset);
             Director director = new Director(builder);
 
             director.Construct();

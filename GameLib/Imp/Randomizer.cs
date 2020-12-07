@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 
-namespace GameLib.Builder
+namespace GameLib.Imp
 {
     public static class Randomizer
     {
@@ -16,6 +16,11 @@ namespace GameLib.Builder
         {
             return new Point(new Random().Next(range),
                              new Random().Next(range));
+        }
+
+        public static int RandInt(int range)
+        {
+            return new Random().Next(range);
         }
     }
 }

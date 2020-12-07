@@ -11,5 +11,6 @@ namespace GameLib.Abs
         int Size { get; }
         void SetCell(Cell cell);
         Cell GetCell(Point point);
+        bool IsPointInField(Point point);
     }
 }

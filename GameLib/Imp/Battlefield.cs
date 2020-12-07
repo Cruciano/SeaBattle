@@ -38,7 +38,7 @@ namespace GameLib.Imp
             return _battleField[point.X, point.Y];
         }
 
-        private bool IsPointInField(Point point)
+        public bool IsPointInField(Point point)
         {
             return (point.X < _size) && (point.Y < _size) && (point.X >= 0) && (point.Y >= 0);
         }
