@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
 using GameLib.Imp;
 using GameLib.Abs;
 
@@ -18,7 +19,7 @@ namespace GameLib.ShotState
             {
                 for (int y = 0; y < battlefield.Size; y++)
                 {
-                    Cell targetNear = battlefield.GetCell(new System.Drawing.Point(x, y));
+                    Cell targetNear = battlefield.GetCell(new Point(x, y));
 
                     if (targetNear.Type == CellType.checkShip && IsAroundShootable(targetNear, battlefield))
                     {
@@ -27,6 +28,7 @@ namespace GameLib.ShotState
                 }
             }
 
+            ResetState();
             return false;
         }
 

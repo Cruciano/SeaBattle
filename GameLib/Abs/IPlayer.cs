@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
 using GameLib.ShotState;
 
 
@@ -9,9 +10,9 @@ namespace GameLib.Abs
     public interface IPlayer
     {
         IBattlefield Battlefield { get; set; }
-        bool IsTurn { get; set; }
-        AutoShot Shot { get; set; }
-        bool TargetShot();
-        bool RandomShot();
+        AutoShot AutoShoter { get; set; }
+        int DamagedCells { get; set; }
+        bool TargetShot(Point target, IBattlefield battlefield);
+        bool AutoShot(IBattlefield battlefield);
     }
 }

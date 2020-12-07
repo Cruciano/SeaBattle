@@ -20,7 +20,7 @@ namespace GameLib.ShotState
 
         protected void ChangeState(AutoShot shot)
         {
-            _player.Shot = shot;
+            _player.AutoShoter = shot;
         }
 
         //take point to the left, right, top and bottom
@@ -62,7 +62,7 @@ namespace GameLib.ShotState
 
         protected void ResetState()
         {
-            _player.Shot = new RandomShot(_player);
+            _player.AutoShoter = new RandomShot(_player);
         }
     }
 }
