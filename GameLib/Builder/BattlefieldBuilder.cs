@@ -7,7 +7,7 @@ using GameLib.Abs;
 
 namespace GameLib.Builder
 {
-    class BattlefieldBuilder : IBattlefieldBuilder
+    public class BattlefieldBuilder : IBattlefieldBuilder
     {
         private Battlefield _battlefield;
         private GamePreset _preset;
@@ -85,12 +85,20 @@ namespace GameLib.Builder
                 {
                     cells = GetCellsInRange(size, start, isHorizontal);
                 }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
                 if (start.Y + size <= _battlefield.Size)
                 {
                     cells = GetCellsInRange(size, start, isHorizontal);
+                }
+                else
+                {
+                    return false;
                 }
             }
 
@@ -130,7 +138,7 @@ namespace GameLib.Builder
 
             if (isHorizontal)
             {
-                for (int i = start.X - 1; i < start.X + range + 1; i++)
+                for (int i = start.X - 1; i <= start.X + range; i++)
                 {
                     surroundingCells.Add(new Cell { coordinates = new Point(i, start.Y + 1),
                                                         Type = CellType.nearShip });
@@ -140,12 +148,12 @@ namespace GameLib.Builder
 
                 surroundingCells.Add(new Cell { coordinates = new Point(start.X - 1, start.Y),
                                                         Type = CellType.nearShip });
-                surroundingCells.Add(new Cell { coordinates = new Point(start.X + range + 1, start.Y),
+                surroundingCells.Add(new Cell { coordinates = new Point(start.X + range, start.Y),
                                                         Type = CellType.nearShip });
             }
             else
             {
-                for (int i = start.Y - 1; i < start.Y + range + 1; i++)
+                for (int i = start.Y - 1; i <= start.Y + range; i++)
                 {
                     surroundingCells.Add(new Cell { coordinates = new Point(start.X + 1, i),
                                                         Type = CellType.nearShip });
@@ -155,8 +163,7 @@ namespace GameLib.Builder
 
                 surroundingCells.Add(new Cell { coordinates = new Point(start.X, start.Y - 1),
                                                          Type = CellType.nearShip });
-                surroundingCells.Add(new Cell { coordinates = new Point(start.X, start.Y + range + 1
-                    ),
+                surroundingCells.Add(new Cell { coordinates = new Point(start.X, start.Y + range),
                                                          Type = CellType.nearShip });
             }
 

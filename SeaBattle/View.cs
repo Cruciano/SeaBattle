@@ -1,51 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using GameLib.Abs;
+using GameLib.Imp;
 
 namespace SeaBattle
 {
     class View
     {
-        private int _size;
-        private string[] _mapPlayer;
-        private string[] _mapEnemy;
-        private char _shipCell = '⬛';
-        private char _checkedCell = '•';
+        private string[] _fieldFirst;
+        private string[] _fieldSecond;
+        private char _shipCell = 'S';
+        private char _checkedCell = 'i';
+        private char _damagedShip = 'D';
 
         public View(int size)
         {
-            _size = size+2;
-            generateMaps();
+            generateMaps(size + 2);
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
         }
 
-        public void PrintGame()
+        public void PrintGame(IBattlefield firstField, IBattlefield secondField)
         {
+            UpdateMaps(firstField, secondField);
             Console.Clear();
-            for (int i = 0; i < _size; i++)
+            for (int i = 0; i < _fieldFirst.Length; i++)
             {
-                if (i > 6)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                }
-                Console.WriteLine($"  {_mapPlayer[i]}\t\t{_mapEnemy[i]}");
+                Console.WriteLine($"  {_fieldFirst[i]}\t\t{_fieldSecond[i]}");
             }
         }
 
-        private void generateMaps()
+        private void generateMaps(int size)
         {
-            _mapPlayer = new string[_size];
-            _mapEnemy = new string[_size];
+            _fieldFirst = new string[size];
+            _fieldSecond = new string[size];
 
             string topLine = "┏";
             string middleLine = "┃";
             string bottomLine = "┗";
 
 
-            for (int i = 0; i < _size * 2; i++)
+            for (int i = 0; i < size-2; i++)
             {
                 topLine += "━";
                 bottomLine += "━";
-                if (i < _size * 2)
+                if (i < size * 2)
                 {
                     middleLine += " ";
                 }
@@ -54,15 +55,67 @@ namespace SeaBattle
             middleLine += "┃";
             bottomLine += "┛";
 
-            _mapPlayer[0] = topLine;
-            _mapEnemy[0] = topLine;
-            for (int i = 1; i < _size - 1; i++)
+            _fieldFirst[0] = topLine;
+            _fieldSecond[0] = topLine;
+            for (int i = 1; i < size - 1; i++)
             {
-                _mapPlayer[i] = middleLine;
-                _mapEnemy[i] = middleLine;
+                _fieldFirst[i] = middleLine;
+                _fieldSecond[i] = middleLine;
             }
-            _mapPlayer[_size - 1] = bottomLine;
-            _mapEnemy[_size - 1] = bottomLine;
+            _fieldFirst[size - 1] = bottomLine;
+            _fieldSecond[size - 1] = bottomLine;
         }
+
+        private void UpdateMaps(IBattlefield firstField, IBattlefield secondField)
+        {
+            for(int y = 0; y < firstField.Size; y++)
+            {
+                string firstLine = "┃";
+                string secondLine = "┃";
+
+                for (int x = 0; x < firstField.Size; x++)
+                {
+                    Cell firstCell = firstField.GetCell(new System.Drawing.Point(x, y));
+
+                    switch (firstCell.Type)
+                    {
+                        case CellType.check:
+                            firstLine += _checkedCell;
+                            break;
+                        case CellType.ship:
+                            firstLine += _shipCell;
+                            break;
+                        case CellType.checkShip:
+                            firstLine += _damagedShip;
+                            break;
+                        default:
+                            firstLine += "-";
+                            break;
+                    }
+
+                    Cell secondCell = secondField.GetCell(new System.Drawing.Point(x, y));
+
+                    switch (secondCell.Type)
+                    {
+                        case CellType.check:
+                            secondLine += _checkedCell;
+                            break;
+                        case CellType.checkShip:
+                            secondLine += _damagedShip;
+                            break;
+                        default:
+                            secondLine += "-";
+                            break;
+                    }
+                }
+
+                firstLine += "┃";
+                secondLine += "┃";
+
+                _fieldFirst[y + 1] = firstLine;
+                _fieldSecond[y + 1] = secondLine;
+            }
+        }
+
     }
 }

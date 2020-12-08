@@ -6,7 +6,7 @@ using GameLib.Abs;
 
 namespace GameLib.Imp
 {
-    class Battlefield : IBattlefield
+    public class Battlefield : IBattlefield
     {
         private Cell[,] _battleField;
         private int _size;

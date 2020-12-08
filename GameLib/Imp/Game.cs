@@ -8,7 +8,7 @@ using GameLib.ShotState;
 
 namespace GameLib.Imp
 {
-    class Game : IGame
+    public class Game : IGame
     {
         private IPlayer _firstPlayer;
         private IPlayer _secondPlayer;
