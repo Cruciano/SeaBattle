@@ -28,6 +28,9 @@ namespace GameLib.Imp
                                                Type = CellType.checkShip });
                 return true;
             }
+
+            battlefield.SetCell(new Cell { coordinates = targetCell.coordinates,
+                                           Type = CellType.check });
             return false;
         }
 

@@ -11,7 +11,7 @@ namespace SeaBattle
         private string[] _fieldFirst;
         private string[] _fieldSecond;
         private char _shipCell = 'S';
-        private char _checkedCell = 'i';
+        private char _checkedCell = 'o';
         private char _damagedShip = 'D';
 
         public View(int size)
@@ -28,8 +28,39 @@ namespace SeaBattle
             Console.Clear();
             for (int i = 0; i < _fieldFirst.Length; i++)
             {
-                Console.WriteLine($"  {_fieldFirst[i]}\t\t{_fieldSecond[i]}");
+                Console.WriteLine($"\t\t{_fieldFirst[i]}\t\t{_fieldSecond[i]}");
             }
+        }
+
+        public void Clear()
+        {
+            Console.Clear();
+        }
+
+        public void PrintRequestMode()
+        {
+            Console.WriteLine("Select the shot mode:");
+            Console.WriteLine("Manual shot: m");
+            Console.WriteLine("Auto shot: a");
+            Console.Write(">");
+        }
+
+        public void PrintRequestX()
+        {
+            Console.WriteLine("Enter target coordinate X");
+            Console.Write(">");
+        }
+
+        public void PrintRequestY()
+        {
+            Console.WriteLine("Enter target coordinate Y");
+            Console.Write(">");
+        }
+
+        public void PrintRequestNumber()
+        {
+            Console.WriteLine("Enter a number in the field range");
+            Console.Write(">");
         }
 
         private void generateMaps(int size)
@@ -46,11 +77,9 @@ namespace SeaBattle
             {
                 topLine += "━";
                 bottomLine += "━";
-                if (i < size * 2)
-                {
-                    middleLine += " ";
-                }
+                middleLine += " ";
             }
+
             topLine += "┓";
             middleLine += "┃";
             bottomLine += "┛";

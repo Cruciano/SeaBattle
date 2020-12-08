@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace GameLib.Imp
 {
-    public static class Randomizer
+    static class Randomizer
     {
         public static bool RandBool()
         {

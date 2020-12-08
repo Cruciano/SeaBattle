@@ -11,17 +11,11 @@ namespace SeaBattle
         static void Main(string[] args)
         {
             GamePreset gamePreset = GamePresetFiller();
-
             IBattlefieldBuilder builder = new BattlefieldBuilder(gamePreset);
             IGame game = new Game(builder, gamePreset);
 
-            IBattlefield firstBattlefield = game.GetFirstField();
-            IBattlefield secondBattlefield = game.GetSecondField();
-
-            View view = new View(gamePreset.Size);
-
-            view.PrintGame(firstBattlefield, secondBattlefield);
-            Console.ReadLine();
+            Controller controller = new Controller(game);
+            controller.Run();
         }
 
         static GamePreset GamePresetFiller()

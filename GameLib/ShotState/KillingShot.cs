@@ -99,43 +99,59 @@ namespace GameLib.ShotState
             {
                 Cell cell = start;
                 //take all right cells
-                while (battlefield.IsPointInField(cell.coordinates) && 
-                    (cell.Type == CellType.ship || cell.Type == CellType.checkShip))
+                while (battlefield.IsPointInField(new Point(cell.coordinates.X + 1, cell.coordinates.Y)))
                 {
-                    cell = battlefield.GetCell(new Point(cell.coordinates.X+1, cell.coordinates.Y));
-                    newList.Add(cell);
+                    cell = battlefield.GetCell(new Point(cell.coordinates.X + 1, cell.coordinates.Y));
+
+                    if (cell.Type == CellType.ship || cell.Type == CellType.checkShip)
+                    {
+                        newList.Add(cell);
+                    }
+                    else break;
                 }
 
-                cell = battlefield.GetCell(new Point(start.coordinates.X - 1, start.coordinates.Y));
+                cell = start;
                 //take all left cells
-                while (battlefield.IsPointInField(cell.coordinates) &&
-                    (cell.Type == CellType.ship || cell.Type == CellType.checkShip))
+                while (battlefield.IsPointInField(new Point(cell.coordinates.X - 1, cell.coordinates.Y)))
                 {
                     cell = battlefield.GetCell(new Point(cell.coordinates.X - 1, cell.coordinates.Y));
-                    newList.Add(cell);
+
+                    if (cell.Type == CellType.ship || cell.Type == CellType.checkShip)
+                    {
+                        newList.Add(cell);
+                    }
+                    else break;
                 }
             }
             else
             {
                 Cell cell = start;
                 //take all bottom cells
-                while (battlefield.IsPointInField(cell.coordinates) &&
-                    (cell.Type == CellType.ship || cell.Type == CellType.checkShip))
+                while (battlefield.IsPointInField(new Point(cell.coordinates.X, cell.coordinates.Y + 1)))
                 {
                     cell = battlefield.GetCell(new Point(cell.coordinates.X, cell.coordinates.Y + 1));
-                    newList.Add(cell);
+
+                    if (cell.Type == CellType.ship || cell.Type == CellType.checkShip)
+                    {
+                        newList.Add(cell);
+                    }
+                    else break;
                 }
 
-                cell = battlefield.GetCell(new Point(start.coordinates.X, start.coordinates.Y - 1));
-                //take all top cells
-                while (battlefield.IsPointInField(cell.coordinates) &&
-                    (cell.Type == CellType.ship || cell.Type == CellType.checkShip))
+                cell = start;
+                while (battlefield.IsPointInField(new Point(cell.coordinates.X, cell.coordinates.Y - 1)))
                 {
                     cell = battlefield.GetCell(new Point(cell.coordinates.X, cell.coordinates.Y - 1));
-                    newList.Add(cell);
+
+                    if (cell.Type == CellType.ship || cell.Type == CellType.checkShip)
+                    {
+                        newList.Add(cell);
+                    }
+                    else break;
                 }
             }
 
+            newList.Add(battlefield.GetCell(start.coordinates));
             return newList;
         }
     }

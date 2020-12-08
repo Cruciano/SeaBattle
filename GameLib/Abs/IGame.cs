@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using GameLib.Imp;
 
 namespace GameLib.Abs
 {
@@ -9,8 +10,10 @@ namespace GameLib.Abs
     {
         IBattlefield GetFirstField();
         IBattlefield GetSecondField();
+        GamePreset GamePreset { get; }
 
-        bool TargetShot(Point target);
+        bool TargetShot(int x, int y);
         bool RandomShot();
+        bool IsGameFinished();
     }
 }

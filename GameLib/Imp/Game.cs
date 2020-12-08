@@ -12,23 +12,26 @@ namespace GameLib.Imp
     {
         private IPlayer _firstPlayer;
         private IPlayer _secondPlayer;
-        private GamePreset _gamePreset;
         private int totalShipCells;
 
+        public GamePreset GamePreset { get; }
         public IBattlefield GetFirstField() => _firstPlayer.Battlefield;
         public IBattlefield GetSecondField() => _secondPlayer.Battlefield;
 
         public Game(IBattlefieldBuilder builder, GamePreset gamePreset)
         {
-            _gamePreset = gamePreset;
+            GamePreset = gamePreset;
             totalShipCells = 0;
-            foreach (var (size, count) in _gamePreset.ShipsCount)
+            foreach (var (size, count) in GamePreset.ShipsCount)
             {
                 totalShipCells += size * count;
             }
 
-            _firstPlayer = new Player() { AutoShoter = new RandomShot(_firstPlayer), DamagedCells = 0 };
-            _secondPlayer = new Player() { AutoShoter = new RandomShot(_secondPlayer), DamagedCells = 0 };
+            _firstPlayer = new Player() { DamagedCells = 0 };
+            _firstPlayer.AutoShoter = new RandomShot(_firstPlayer);
+
+            _secondPlayer = new Player() { DamagedCells = 0 };
+            _secondPlayer.AutoShoter = new RandomShot(_secondPlayer);
 
             Director director = new Director(builder);
 
@@ -40,8 +43,9 @@ namespace GameLib.Imp
             _secondPlayer.Battlefield = builder.GetResult();            
         }
 
-        public bool TargetShot(Point target)
+        public bool TargetShot(int x, int y)
         {
+            Point target = new Point(x, y);
             if (!_firstPlayer.TargetShot(target, _secondPlayer.Battlefield))
             {
                 while (_secondPlayer.AutoShot(_firstPlayer.Battlefield))
@@ -80,8 +84,8 @@ namespace GameLib.Imp
 
         public bool IsGameFinished()
         {
-            if(totalShipCells == _firstPlayer.DamagedCells ||
-                totalShipCells == _secondPlayer.DamagedCells)
+            if(totalShipCells <= _firstPlayer.DamagedCells ||
+                totalShipCells <= _secondPlayer.DamagedCells)
             {
                 return true;
             }

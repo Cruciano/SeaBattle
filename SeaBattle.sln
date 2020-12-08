@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeaBattle", "SeaBattle\SeaBattle.csproj", "{5B5A81C1-520A-40B6-87BB-0ED6AA1EC4C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLib", "GameLib\GameLib.csproj", "{2ABC3A84-4EDA-4FFE-BB45-5570EE79018E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameLib", "GameLib\GameLib.csproj", "{2ABC3A84-4EDA-4FFE-BB45-5570EE79018E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTest", "XUnitTest\XUnitTest.csproj", "{5A779F4A-B1EC-45E8-B771-52527F554EB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2ABC3A84-4EDA-4FFE-BB45-5570EE79018E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ABC3A84-4EDA-4FFE-BB45-5570EE79018E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ABC3A84-4EDA-4FFE-BB45-5570EE79018E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A779F4A-B1EC-45E8-B771-52527F554EB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A779F4A-B1EC-45E8-B771-52527F554EB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A779F4A-B1EC-45E8-B771-52527F554EB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A779F4A-B1EC-45E8-B771-52527F554EB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
