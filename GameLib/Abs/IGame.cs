@@ -10,7 +10,7 @@ namespace GameLib.Abs
     {
         IBattlefield GetFirstField();
         IBattlefield GetSecondField();
-        GamePreset GamePreset { get; }
+        GamePreset gamePreset { get; }
 
         bool TargetShot(int x, int y);
         bool RandomShot();

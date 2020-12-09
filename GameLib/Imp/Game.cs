@@ -12,19 +12,19 @@ namespace GameLib.Imp
     {
         private IPlayer _firstPlayer;
         private IPlayer _secondPlayer;
-        private int totalShipCells;
+        private int _totalShipCells;
 
-        public GamePreset GamePreset { get; }
+        public GamePreset gamePreset { get; }
         public IBattlefield GetFirstField() => _firstPlayer.Battlefield;
         public IBattlefield GetSecondField() => _secondPlayer.Battlefield;
 
         public Game(IBattlefieldBuilder builder, GamePreset gamePreset)
         {
-            GamePreset = gamePreset;
-            totalShipCells = 0;
-            foreach (var (size, count) in GamePreset.ShipsCount)
+            this.gamePreset = gamePreset;
+            _totalShipCells = 0;
+            foreach (var (size, count) in this.gamePreset.ShipsCount)
             {
-                totalShipCells += size * count;
+                _totalShipCells += size * count;
             }
 
             _firstPlayer = new Player() { DamagedCells = 0 };
@@ -84,8 +84,8 @@ namespace GameLib.Imp
 
         public bool IsGameFinished()
         {
-            if(totalShipCells <= _firstPlayer.DamagedCells ||
-                totalShipCells <= _secondPlayer.DamagedCells)
+            if(_totalShipCells <= _firstPlayer.DamagedCells ||
+                _totalShipCells <= _secondPlayer.DamagedCells)
             {
                 return true;
             }

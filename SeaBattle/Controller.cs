@@ -16,7 +16,7 @@ namespace SeaBattle
         public Controller(IGame game)
         {
             _game = game;
-            _view = new View(_game.GamePreset.Size);
+            _view = new View(_game.gamePreset.Size);
         }
 
         public void Run()
@@ -55,7 +55,7 @@ namespace SeaBattle
         private int ReadInt()
         {
             int input;
-            while (!int.TryParse(Console.ReadLine(), out input)  || input > _game.GamePreset.Size || input < 1)
+            while (!int.TryParse(Console.ReadLine(), out input)  || input > _game.gamePreset.Size || input < 1)
             {
                 _view.PrintRequestNumber();
             }
