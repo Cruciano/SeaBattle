@@ -9,7 +9,7 @@ namespace GameLib.Builder
 {
     public class BattlefieldBuilder : IBattlefieldBuilder
     {
-        private Battlefield _battlefield;
+        private IBattlefield _battlefield;
         private GamePreset _preset;
 
         public BattlefieldBuilder(GamePreset preset)
@@ -52,7 +52,7 @@ namespace GameLib.Builder
 
         public IBattlefield GetResult()
         {
-            Battlefield result = _battlefield;
+            IBattlefield result = _battlefield;
             Reset();
             return result;
         }

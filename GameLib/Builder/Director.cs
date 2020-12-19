@@ -5,7 +5,7 @@ using GameLib.Abs;
 
 namespace GameLib.Builder
 {
-    class Director
+    public class Director
     {
         private IBattlefieldBuilder _builder;
 

@@ -7,7 +7,7 @@ using GameLib.Imp;
 
 namespace GameLib.ShotState
 {
-    class RandomShot : AutoShot
+    public class RandomShot : AutoShot
     {
         public RandomShot(IPlayer player): base(player)
         {

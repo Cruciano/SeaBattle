@@ -10,8 +10,8 @@ namespace SeaBattle
     {
         private IGame _game;
         private View _view;
-        private IBattlefield firstBattlefield;
-        private IBattlefield secondBattlefield;
+        private IBattlefield _firstBattlefield;
+        private IBattlefield _secondBattlefield;
 
         public Controller(IGame game)
         {
@@ -23,12 +23,12 @@ namespace SeaBattle
         {
             while (!_game.IsGameFinished())
             {
-                firstBattlefield = _game.GetFirstField();
-                secondBattlefield = _game.GetSecondField();
+                _firstBattlefield = _game.GetFirstField();
+                _secondBattlefield = _game.GetSecondField();
 
                 _view.Clear();
 
-                _view.PrintGame(firstBattlefield, secondBattlefield);
+                _view.PrintGame(_firstBattlefield, _secondBattlefield);
                 _view.PrintRequestMode();
                 char mode = ReadMode();
 

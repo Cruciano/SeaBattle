@@ -23,6 +23,11 @@ namespace GameLib.ShotState
             _player.AutoShoter = shot;
         }
 
+        protected void ResetState()
+        {
+            _player.AutoShoter = new RandomShot(_player);
+        }
+
         //take point to the left, right, top and bottom
         protected List<Cell> GetAroundCell(Cell cell, IBattlefield battlefield)
         {
@@ -58,11 +63,6 @@ namespace GameLib.ShotState
             }
 
             return false;
-        }
-
-        protected void ResetState()
-        {
-            _player.AutoShoter = new RandomShot(_player);
         }
     }
 }

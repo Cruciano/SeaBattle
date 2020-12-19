@@ -7,7 +7,7 @@ using GameLib.ShotState;
 
 namespace GameLib.Imp
 {
-    class Player : IPlayer
+    public class Player : IPlayer
     {
         public IBattlefield Battlefield { get; set; }
         public AutoShot AutoShoter { get; set; }
